@@ -1,0 +1,32 @@
+extends layout_admin
+
+block content
+	div.row
+		div.col.col-xs-6.col-md-4.sidebarStyle
+			div.text-xs-center.text-sm-left
+				ul.nav.nav-pills.nav-stacked
+					li.active
+						a(href="#") Boutique
+					li
+						a(href="/admin/categorie") Catégories
+					li
+						a(href="/admin/produits") Produits
+				ul.nav.nav-pills.nav-stacked
+					li.active
+						a(href="#") Paramètres
+					li
+						a(href="/admin/ingredients") Ingrédients
+					li
+						a(href="/admin/configuration") Configuration
+				ul.nav.nav-pills.nav-stacked
+					li.active
+						a(href="#") Liste client
+					li
+						a(href="/admin/clients") Clients
+	ng-view 
+			h3 Chargement ...
+
+block footer
+	br
+	small(style="float:right;margin-right:10px;") Créer par 
+		a(href="http://www.blue-screen.co", target="_blank") Blue-Screen.co

@@ -1,0 +1,474 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, minimal-ui')
+    title Easy Pizza
+    meta(name="description", content="Outil de commande en ligne pour pizzeria")
+
+    meta(property="og:type", content="website")
+    meta(property="og:title", content="Easy Pizza")
+    meta(property="og:description", content="Outil de commande en ligne pour pizzeria")
+    meta(property="og:image", content="/images/website.png")
+    meta(property="og:url", content="https://pizza.loicdaniel.fr/")
+    meta(property="og:locale", content="fr_FR")
+    meta(property="og:site_name", content="Easy Pizza")
+
+    meta(property="profile:first_name", content="loic")
+    meta(property="profile:last_name", content="daniel")
+    meta(property="profile:username", content="loic.daniel")
+    meta(property="profile:gender", content="male")
+
+    link(href='/demo/img/favicon.png', type='image/x-icon', rel='shortcut icon')
+    link(href='/demo/css/master.css', rel='stylesheet')
+    script(src='/demo/plugins/jquery/jquery-1.11.3.min.js')
+  body
+    // Loader
+    #page-preloader
+      span.spinner
+    // Loader end
+    #wrapper.layout-theme.animated-css(data-header='sticky', data-header-top='700')
+      #sb-site
+        .wrap-content
+          #my-slider.main-slider.slider-pro(data-slider-width='1920', data-slider-height='1080')
+            .sp-slides
+              // Slide 1
+              .sp-slide
+                img.sp-image.img-responsive(src='/demo/media/main-slider/main-slider_bg-1.jpg', height='1080', width='1920', alt='slider')
+                span.sp-layer.main-slider__title(data-horizontal='0', data-vertical='-23%', data-position='centerCenter', data-show-transition='up', data-hide-transition='down', data-show-duration='800', data-show-delay='400', data-hide-delay='400')
+                .sp-layer.main-slider__text.text-center(data-horizontal='0', data-vertical='19%', data-position='centerCenter', data-width='45%', data-height='30%', data-show-transition='up', data-hide-transition='down', data-show-duration='800', data-show-delay='1200', data-hide-delay='1200')
+                  p.hidden-xs
+              // end sp-slide
+            // end sp-slides
+          // end main-slider
+          section.section-default
+            .container
+              .row
+                .col-xs-12
+                  h2.ui-title-block.wow.fadeInUp(data-wow-duration='2s') Votre pizzeria en ligne
+                  p.ui-subtitle-block.wow.fadeInUp(data-wow-duration='2s')
+                    | Easy Pizza est un outil de commande en ligne, personnalisable aux couleurs de votre pizzeria.
+                  center
+                    a.ui-btn.ui-btn_mod-a.btn-effect(href='/demo', target='_blank') voir la démo
+                  #accordion-1.accordion.accordion_mod-a.panel-group.rtd
+                    .panel.panel-default.wow.fadeInUp(data-wow-duration='2s')
+                      .panel-heading
+                        a.btn-collapse(data-toggle='collapse', data-parent='#accordion-1', href='#collapse-1')
+                          i.icon
+                        h3.panel-title.ui-title-inner
+                          span.panel-title__number 1.
+                          | Vue client
+                      #collapse-1.panel-collapse.collapse.in
+                        .panel-body
+                          .row
+                            .col-md-6
+                              .panel-img.border-effect
+                                .border-effect__top
+                                .border-effect__right
+                                .border-effect__bottom
+                                .border-effect__left
+                                img.img-responsive(src='/demo/media/accordion/utilisateur1.gif', height='330', width='500', alt='Foto')
+                            .col-md-6
+                              p
+                                | Une navigation simple et intuitive à disposition de vos clients pour la prise de commande en ligne, le paiement et la livraison.
+                              ul.list_mod-b
+                                li Navigation simple
+                                li Choix de tailles et de sauces
+                                li Personnalisation des ingrédients
+                                li Estimation du temps de préparation
+                              a.ui-btn.ui-btn_mod-a.btn-effect(href='/demo', target='_blank') essayer
+                    // end panel
+                    .panel.wow.fadeInUp(data-wow-duration='2s', data-wow-delay='.5s')
+                      .panel-heading
+                        a.btn-collapse.collapsed(data-toggle='collapse', data-parent='#accordion-1', href='#collapse-2')
+                          i.icon
+                        h3.panel-title.ui-title-inner
+                          span.panel-title__number 2.
+                          | Administration
+                      #collapse-2.panel-collapse.collapse
+                        .panel-body
+                          .row
+                            .col-md-6
+                              .panel-img.border-effect
+                                .border-effect__top
+                                .border-effect__right
+                                .border-effect__bottom
+                                .border-effect__left
+                                img.img-responsive(src='/demo/media/accordion/admin1.gif', height='330', width='500', alt='Foto')
+                            .col-md-6
+                              p
+                                | Une administration simple d’utilisation, pour la configuration de votre site et la gestion de vos références.
+                              ul.list_mod-b
+                                li Gestion des tarifs
+                                li Ajout de références
+                                li Autoriser ou non la livraison
+                                li Gestion des disponibilité de stock
+                                li Gestion des horaires et fermeture exceptionnelle
+                                li Exportation des données client
+                    // end panel
+                  // end col
+                // end row
+              // end container
+          // end section-default
+          section.section_mod-a.section-bg.section-bg_mod-b.wow.fadeInUp(data-wow-duration='2s')
+            .section__inner.block-a.rtd
+              .container
+                .row
+                  .col-md-4.wow.fadeInLeft(data-wow-duration='2s')
+                    img.block-a__img.img-responsive(src='/demo/media/img-1.gif', height='752', width='369', alt='Mobile')
+                  // end col
+                  .col-md-7.col-md-offset-1.wow.fadeInRight(data-wow-duration='2s')
+                    h2.ui-title-block Adapté pour la navigation mobile 
+                    p
+                      | L’outil Easy Pizza s’adapte aux dimensions de l’écran de l’utilisateur pour permettre une navigation facile et agréable quelque soit le support.
+                    h3.ui-title-inner Compatible tous supports 
+                    ul.list_mod-b
+                      li Ordinateur
+                      li Smartphone
+                      li Tablette
+                    a.ui-btn.ui-btn-primary.ui-btn_with_icon.btn-effect
+                      i.icon.fa.fa-apple
+                      | Compatible IOS
+                    a.ui-btn.ui-btn-primary.ui-btn_with_icon.btn-effect
+                      i.icon.fa.fa-android
+                      | Compatible Android
+                  // end col
+                // end row
+              // end container
+          // end section_mod-a
+          section.section-default
+            .container
+              .row
+                .col-xs-12
+                  h2.ui-title-block Questions fréquentes
+                  p.ui-subtitle-block Vous avez des questions? Vous trouverez sûrement les réponses ici.
+                  #accordion-1.accordion.accordion_mod-b.panel-group.rtd
+                    .panel
+                      .panel-heading
+                        a.btn-collapse.collapsed(data-toggle='collapse', data-parent='#accordion-1', href='#collapse-3')
+                          i.icon.icon_small
+                        h3.panel-title.ui-title-inner.ui-title-inner__small
+                          | Ça a l’air facile à utiliser mais je ne veux vraiment pas m’embêter avec ça, quelqu’un peut le faire pour moi ?
+                      #collapse-3.panel-collapse.collapse
+                        .panel-body
+                          p
+                            | - Oui bien sûr. Nous réalisons l'installation, la personnalisation et la mise en ligne de votre site.
+                    // end panel
+                    .panel
+                      .panel-heading
+                        a.btn-collapse.collapsed(data-toggle='collapse', data-parent='#accordion-1', href='#collapse-4')
+                          i.icon.icon_small
+                        h3.panel-title.ui-title-inner.ui-title-inner__small
+                          | Je veux proposer le paiement en ligne à mes clients, sans m'embêter avec ma banque, vous avez une solution plus simple pour moi ?
+                      #collapse-4.panel-collapse.collapse
+                        .panel-body
+                          p
+                            | -Oui. Nous pouvons vous proposer une solution de paiement en ligne qui ne necessite aucune démarche auprès de votre banque. Un numéro de compte suffit, on s’occupe du reste.
+                    // end panel
+                    .panel
+                      .panel-heading
+                        a.btn-collapse.collapsed(data-toggle='collapse', data-parent='#accordion-1', href='#collapse-5')
+                          i.icon.icon_small
+                        h3.panel-title.ui-title-inner.ui-title-inner__small Je dois payer un abonnement ?
+                      #collapse-5.panel-collapse.collapse
+                        .panel-body
+                          p
+                            | -Non. Vous payez une seule fois et c’est tout. Vous pouvez profiter à vie de votre site sans aucune contrainte.
+                    // end panel
+                  // end accordion
+                // end col
+              // end row
+            // end container
+          // end section-default
+          section.section-default.wow.fadeInUp(data-wow-duration='2s')
+            .container
+              .row
+                .col-xs-12
+                  h2.ui-title-block Des offres pour tous les budjets
+                  .row
+                    .col-md-4
+                      article.post.post_mod-a.clearfix.wow.fadeInRight(data-wow-duration='2s')
+                        .entry-media
+                          a(href='/demo/media/post/320x255/post_320x255_img-1.jpg', rel='prettyPhoto')
+                            img.img-responsive(src='/demo/media/post/320x255/post_320x255_img-1.jpg', height='255', width='320', alt='Foto')
+                        .entry-main
+                          .entry-header
+                            .entry-meta
+                              time(datetime='2012-10-27 15:20')
+                                a(href='javascript:void(0);') 500 € ttc
+                            h2.entry-title.ui-title-inner EasyPizza
+                          .entry-content
+                            p
+                              | INSTALLATION 
+                              br
+                              |                                                         + personnalisation
+                              br
+                              |                                                         + mise en ligne
+                        footer.entry-footer.clearfix
+                      // end post
+                    .col-md-4
+                      article.post.post_mod-a.clearfix.wow.fadeInUp(data-wow-duration='2s')
+                        .entry-media
+                          a(href='/demo/media/post/320x255/post_320x255_img-2.jpg', rel='prettyPhoto')
+                            img.img-responsive(src='/demo/media/post/320x255/post_320x255_img-2.jpg', height='255', width='320', alt='Foto')
+                        .entry-main
+                          .entry-header
+                            .entry-meta
+                              time(datetime='2012-10-27 15:20')
+                                a(href='javascript:void(0);') 600 € ttc
+                            h2.entry-title.ui-title-inner EasyPizza + Photo
+                          .entry-content
+                            p
+                              | INSTALLATION 
+                              br
+                              |                                                         + personnalisation
+                              br
+                              |                                                         + mise en ligne 
+                              br
+                              br
+                              |                                                         + SÉANCE PHOTO
+                              br
+                              | et détourage
+                        footer.entry-footer.clearfix
+                      // end post
+                    .col-md-4
+                      article.post.post_mod-a.clearfix.wow.fadeInLeft(data-wow-duration='2s')
+                        .entry-media
+                          a(href='/demo/media/post/320x255/post_320x255_img-3.jpg', rel='prettyPhoto')
+                            img.img-responsive(src='/demo/media/post/320x255/post_320x255_img-3.jpg', height='255', width='320', alt='Foto')
+                        .entry-main
+                          .entry-header
+                            .entry-meta
+                              time(datetime='2012-10-27 15:20')
+                                a(href='javascript:void(0);') 820 € ttc
+                            h2.entry-title.ui-title-inner EasyPizza + Com
+                          .entry-content
+                            p
+                              | INSTALLATION 
+                              br
+                              |                                                         + personnalisation
+                              br
+                              |                                                         + mise en ligne 
+                              br
+                              br
+                              |                                                         + CONCEPTION FLYER A5
+                              br
+                              | et impression x 1000
+                              br
+                              br
+                              |                                                         + CONCEPTION DRAPEAU (3m)
+                              br
+                              | et impression
+                        footer.entry-footer.clearfix
+                      // end post
+                // end col
+              // end row
+            // end container
+          // end section-default
+          .section_mod-b
+            .container
+              .row
+                .col-xs-12
+                .col-md-8
+                  h3.ui-title-inner.ui-title-inner_mod-a Vous avez des questions? Vous souhaitez un devis? C'est ici.
+                  form#comment-reply-form.comment-reply-form(action='#', method='get')
+                    .row
+                      .col-md-6
+                        label.comment-reply-form__title.ui-form-label NOM *
+                        input#comment-author.form-control(type='text', name='nom', required='')
+                      .col-md-6
+                        label.comment-reply-form__title.ui-form-label MAIL *
+                        input#comment-email.form-control(type='email', name='email', required='')
+                    label.comment-reply-form__title.ui-form-label TEL
+                    input#comment-website.form-control(type='text', name='tel', required='')
+                    label.comment-reply-form__title.ui-form-label MESSAGE
+                    textarea#comment-text.form-control(name='message', rows='6', required='')
+                    button.comment-reply-form__btn.ui-btn.ui-btn-primary.btn-effect Envoyer
+                  // end comment-reply-form
+                .col-md-4
+                  .section-contact
+                    section.contact-block
+                      h3.contact-block__title.ui-title-inner Coordonnées
+                      .contact-block__inner
+                        | Tél: 
+                        span.color_primary 09 82 23 26 44 
+                      .contact-block__inner
+                        | Mail: 
+                        span.color_primary contact@blue-screen.co
+                    section.contact-block
+                      h3.contact-block__title.ui-title-inner Adresse
+                      .contact-block__info Blue Screen 
+                      .contact-block__info 7 avenue de Blida 
+                      .contact-block__inner 57000  
+                      .contact-block__inner METZ
+          footer.footer.wow.fadeInUp(data-wow-duration='2s')
+            .container
+              .row
+                .col-xs-12
+                  .footer-decor.decor-2 &
+                  ul.footer-list.list-inline
+                    li.footer-list__item
+                      a.footer-list__link(href='http://www.facebook.com/easypizaa', target="_blank") Facebook
+                    li.footer-list__item
+                      a.footer-list__link(href='javascript:void(0);') Twitter
+            .copyright.border-top
+              .container
+                .row
+                  .col-xs-12
+                    .text-center
+                      | Copyright © 2018 - EASY PIZZA un outil proposé par 
+                      a.copyright__link(href='http://blue-screen.co/', target='_blank') BLUE SCREEN
+                      |  Tout droit reservé.
+            // end copyright
+          // end footer
+        // end wrap-content
+      // end #sb-site
+      .sb-slidebar.sb-left
+        form#search-global-form.form-search(method='get')
+          input.form-search__input(type='text', placeholder='Search')
+          button.form-search__btn
+            i.icon.fa.fa-search
+        nav.main-nav
+          ul.navig-menu.list-unstyled
+            li.navig-menu__item
+              a.navig-menu__link(href='home.html') Home
+            li.navig-menu__item
+              a.navig-menu__link(href='shop-catalog-page.html') Pizza menu
+            li.navig-menu__item
+              a.navig-menu__link(href='pizza-builder.html') pizza builder
+            li.navig-menu__item
+              a.navig-menu__link(href='blog.html') blog
+            li.navig-menu__item
+              a.navig-menu__link(href='blog-details.html') pages
+            li.navig-menu__item
+              a.navig-menu__link(href='about.html') about us
+            li.navig-menu__item
+              a.navig-menu__link(href='contact.html') contact
+        // end main-nav
+        .border-bottom
+        a.link-account(href='javascript:void(0);') login
+        a.link-account(href='javascript:void(0);') my account 
+        a.link-account(href='javascript:void(0);') checkout
+      // end sb-left
+      .sb-slidebar.sb-right
+        section.section-list-cart
+          h2.ui-title-inner Cart Totals
+          ul.list-cart.list-unstyled
+            li.list-cart__item
+              .list-cart__img
+                i.list-cart__icon.icon.fa.fa-times.js-del
+                img.img-responsive(src='/demo/media/list-cart/1.png', height='87', width='87', alt='Foto')
+              .list-cart__inner
+                h3.list-cart__title Moorish Lamb
+                .list-cart__size
+                  span.list-cart__size_name Size:
+                  |  Large
+                .list-cart__price
+                  span.color_primary 1 x
+                  |  $19.00
+            li.list-cart__item
+              .list-cart__img
+                i.list-cart__icon.icon.fa.fa-times.js-del
+                img.img-responsive(src='/demo/media/list-cart/2.png', height='87', width='87', alt='Foto')
+              .list-cart__inner
+                h3.list-cart__title Vegetarian Supreme
+                .list-cart__size
+                  span.list-cart__size_name Size:
+                  |  Jumbo
+                .list-cart__price
+                  span.color_primary 1 x
+                  |  $34.00
+            li.list-cart__item
+              .list-cart__img
+                i.list-cart__icon.icon.fa.fa-times.js-del
+                img.img-responsive(src='/demo/media/list-cart/3.png', height='87', width='87', alt='Foto')
+              .list-cart__inner
+                h3.list-cart__title Spiced Pumpkin
+                .list-cart__size
+                  span.list-cart__size_name Size:
+                  |  Small
+                .list-cart__price
+                  span.color_primary 1 x
+                  |  $26.00
+          .total-price.clearfix
+            | Order Total
+            span.total-price__number $79.00
+          a.total-price__btn.ui-btn.ui-btn_mod-a.btn-effect.btn-block(href='javascript:void(0);') view shopping cart
+          a.total-price__btn.ui-btn.ui-btn-primary.btn-effect.btn-block(href='javascript:void(0);') checkout
+        // end list-cart
+      // end sb-right
+    // end layout-theme
+    // SCRIPTS MAIN
+    script(src='/demo/js/jquery-migrate-1.2.1.js')
+    script(src='/demo/plugins/bootstrap/js/bootstrap.min.js')
+    script(src='/demo/js/waypoints.min.js')
+    script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
+    script(src='/demo/js/modernizr.custom.js')
+    script(src='/demo/js/cssua.min.js')
+    // SCRIPTS THEME
+    // Sidebar
+    script(src='/demo/plugins/slidebars/dist/slidebars.js')
+    // Home slider
+    script(src='/demo/plugins/slider-pro/dist/js/jquery.sliderPro.js')
+    // Sliders
+    script(src='/demo/plugins/owl-carousel/owl.carousel.min.js')
+    // Isotope
+    script(src='/demo/plugins/isotope/isotope.pkgd.min.js')
+    // Modal
+    script(src='/demo/plugins/prettyphoto/js/jquery.prettyPhoto.js')
+    // Date select
+    script(src='/demo/plugins/datetimepicker/jquery.datetimepicker.js')
+    // Select customization
+    script(src='/demo/plugins/bootstrap-select/dist/js/bootstrap-select.min.js')
+    // Price slider
+    script(src='/demo/plugins/nouislider/jquery.nouislider.all.min.js')
+    // Chart
+    script(src='/demo/plugins/rendro-easy-pie-chart/dist/jquery.easypiechart.min.js')
+    // Animation
+    script(src='/demo/js/wow.min.js')
+    // Scrollspy
+    script(src='/demo/js/scrollspy.min.js')
+    // Custom
+    script(src='/demo/js/custom.js')
+
+    script.
+        var owa_baseUrl = 'https://analytics.loicdaniel.fr/';
+        var owa_cmds = owa_cmds || [];
+        owa_cmds.push(['setSiteId', '9e894c2ca75b74e9de8444dd6a454354']);
+        owa_cmds.push(['trackPageView']);
+        owa_cmds.push(['trackClicks']);
+        owa_cmds.push(['trackDomStream']);
+
+        (function() {
+            var _owa = document.createElement('script'); _owa.type = 'text/javascript'; _owa.async = true;
+            owa_baseUrl = ('https:' == document.location.protocol ? window.owa_baseSecUrl || owa_baseUrl.replace(/http:/, 'https:') : owa_baseUrl );
+            _owa.src = owa_baseUrl + 'modules/base/js/owa.tracker-combined-min.js';
+            var _owa_s = document.getElementsByTagName('script')[0]; _owa_s.parentNode.insertBefore(_owa, _owa_s);
+        }());
+
+    script.
+      $(document).ready(function(){
+
+        $("#comment-reply-form").submit(function(event){
+
+
+          event.preventDefault();
+
+          var nom = $("#comment-author").val(), 
+              mail = $("#comment-email").val(), 
+              tel = $("#comment-website").val(), 
+              message = $("#comment-text").val();
+          var data = {nom:nom, mail:mail, tel:tel, message:message};
+
+          $.post("/mailInfos", data, function(data){
+            console.log(data);
+            $("#comment-author").val("");
+            $("#comment-email").val("");
+            $("#comment-website").val("");
+            $("#comment-text").val("");
+          });
+
+          
+        });
+      });
+

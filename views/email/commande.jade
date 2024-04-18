@@ -1,0 +1,65 @@
+html
+	head
+		link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u", crossorigin="anonymous")
+		link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css", integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp", crossorigin="anonymous")
+	body
+		table(width="600",cellpadding="0",cellspacing="0",align="center")
+			thead
+				th
+					td Nom
+					td Quantité
+					td Modification
+					td Total
+			tbody
+				each commande in panier.commandes
+					tr
+						td &nbsp;
+						td
+							h3= commande.produit.nom
+						if commande.taille
+							br
+							h3 Taille #{commande.taille.nom}
+						td
+							h3= commande.quantite
+						td
+							if commande.ingredients.more.length > 0
+								h4 Ingrédients supplémentaires
+								ul.list-unstyled
+									each ingredient in commande.ingredients.more
+										li #{ingredient.nom} #{ingrediet.prix} €
+							else
+								h4 Pas d'ingrédients supplémentaires.
+
+							if commande.ingredients.less.length > 0
+								h4 Ingrédients en moins
+								ul.list-unstyled
+									each ingredient in commande.ingredients.less
+										li #{ingredient.nom}
+							else
+								h4 Pas d'ingrédients en moins.
+						td
+							h3 #{commande.total}€
+					tr
+						td(colspan="5")
+							hr
+		table(width="600",cellpadding="0",cellspacing="0",align="center")
+			tbody
+				tr
+					td
+						if client.livraison.surPlace
+							div Commande prise sur place
+						else
+							div Commande à livrer
+					td mode de paiement : #{client.typePaiement}
+					td &nbsp;
+					td
+						h2 Total : #{panier.total}€
+			if client.livraison.domicile
+				tr
+					td(colspan="5")
+						hr
+				tr
+					td Adresse
+					td #{client.nom} #{client.prenom} 
+					td #{client.adresse.adresse} #{client.adresse.codePostal} #{client.adresse.ville}
+					//- td #{client.adresse.telephone}

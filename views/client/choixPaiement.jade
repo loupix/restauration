@@ -1,0 +1,8 @@
+div.content.paiementChoix(ng-init="init()")
+	div.row.paiement
+		div.col-md-4.choix(ng-class="{'selected' : choixPaiement == 'enLigne'}", ng-click="setChoixPaiement('enLigne')")
+			i.fa.fa-credit-card.fa-5x
+			div.text Je paye en ligne
+		div.col-md-4.choix(ng-class="{'selected' : choixPaiement == 'surPlace'}", ng-click="setChoixPaiement('surPlace')")
+			i.fa.fa-money.fa-5x
+			div.text Je paye a la livraison

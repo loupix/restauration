@@ -1,0 +1,85 @@
+.section_mod-f
+	.container
+		.row
+			.col-md-8
+				form.form-details
+					section.section-area
+						h2.ui-title-inner.ui-title-inner_mod-a Details de la commande
+						.row
+							.col-md-6
+								label.ui-form-label NOM DE FAMILLE *
+								input.form-control(required="required", type='text', name="nom", ng-model="client.nom")
+							.col-md-6
+								label.ui-form-label PRENOM *
+								input.form-control(required="required", type='text', name="prenom", ng-model="client.prenom")
+						.row
+							.col-md-6
+								label.ui-form-label ADRESSE EMAIL *
+								input.form-control(required="required", type='text', name="email", ng-model="client.email")
+							.col-md-6
+								label.ui-form-label TELEPHONE *
+								input.form-control(required="required", type='text', name="phone", ng-model="client.telephone")
+
+						
+						
+					// end section
+					section.section_mod-h.ng-hide(ng-show="$root.restaurant.livraison")
+						h2.ui-title-inner.ui-title-inner_mod-b Adresse de livraison
+						input#shipping-address.forms__check.hidden(type='checkbox', name='shipping-address', value='', ng-model="client.livraison.domicile")
+						label.forms__label.forms__label-check.forms__label-check_mod-a(for='shipping-address') Être livrer à domicile ?
+						div.ng-hide(ng-show="client.livraison.domicile")
+							label.ui-form-label ADDRESS *
+							input.form-control.form-control_second(type='text', placeholder='Adresse complete',  ng-model="place", g-places-autocomplete, options="autocompleteOptions", force-selection="true", ng-change="loadPlace()")
+							input.form-control(type='text', placeholder='Apartement, étage, code etc. (optionel)')
+							label.ui-form-label VILLE *
+							input.form-control(type='text', placeholder='Ville / Lieu-dit', ng-model="client.adresse.ville")
+							input(type="hidden", name="place", ng-model="client.place")
+							div(ng-hide="client.distance > restaurant.distanceLivraison") 
+								h6 Distance : {{ client.distance }} Km.
+							div.ng-hide(ng-show="client.distance > restaurant.distanceLivraison") 
+								h6 Impossible de livrer à cette adresse.
+							br
+						label.ui-form-label COMMENTAIRE
+						textarea.form-control(name='comment', rows='4', placeholder='Notes about your order , e.g. special notes for delivery.', required='')
+							
+			.col-md-4
+				.section-table-order.section-table-order_mod-a(bs-affix, data-offset-top="455")
+					section.section-area
+						h2.table-order__title.ui-title-inner Votre commande
+						table.table-order
+							thead
+								tr
+									th PRODUITS
+									th TOTAL
+							tbody
+								tr(ng-repeat="commande in $root.commandes")
+									td.no-br
+										| {{ commande.produit.nom }}
+										span.color_primary  x 
+										span.enumerator__input {{ commande.quantite }}
+										br
+										span(ng-repeat="ing in commande.ingredients.less")
+											span - {{ ing.nom }}
+											br
+										span(ng-repeat="ing in commande.ingredients.more")
+											span + {{ ing.nom+" +"+ing.prix+" €" }}
+											br
+									td
+										span.table-order__price {{ commande.total }} €
+								tr.ng-hide(ng-show="client.livraison.domicile")
+									td.border-cell LIVRAISON
+									td.border-cell {{ getLivraison() }} €
+								tr(ng-hide="client.livraison.domicile")
+									td.table-order__total Total de la commande
+									td.table-order__total {{ panier.total }} €
+								tr.ng-hide(ng-show="client.livraison.domicile")
+									td.table-order__total Total de la commande
+									td.table-order__total {{ getTotal() }} €
+
+					section.section_mod-g
+						//- input#form-payment__check.form-payment__check.forms__check.hidden(type='checkbox', name='pizza-size', value='')
+						//- label.form-payment__check-label.forms__label.forms__label-check(for='form-payment__check')
+						//- 	span.form-payment__item-title
+						//- 		| I have read and accept the 
+						//- 		a.form-payment__link-2(href='javascript:void(0);') Terms & Conditions
+						a.form-payment__btn.ui-btn.ui-btn-primary.btn-effect(href='javascript:void(0);', ng-hide="client.distance > restaurant.distanceLivraison && client.livraison.domicile", ng-click="valide()") Valider la commande

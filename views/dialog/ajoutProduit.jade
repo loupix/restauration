@@ -1,0 +1,134 @@
+md-dialog.dialProduit(aria-label= title)
+	md-dialog-content
+		div.row.menu
+			div.col-md-3.col-md-offset-3
+				div.btn(ng-click="changeChoix('complet')", ng-class="{'selected':choix['complet']}") Complète
+			div.col-md-3
+				div.btn(ng-click="changeChoix('simple')", ng-class="{'selected':choix['simple']}") Simple
+		div.choix(ng-show="choix['complet']")
+			div.row
+				div.col-md-4
+					div.form-group
+						label(for="title") Titre
+						input.form-control(id="title", name="title", ng-model="produit.nom")
+			div.row
+				div.col-md-4
+					div.form-group
+						label(for="prix") Prix
+						input.form-control(id="prix", name="prix", ng-model="produit.prix")
+			div.row
+				div.col-md-4
+					div.form-group
+						label(for="image") Image
+						button.form-control.btn.btn-default(id="image", name="image", ng-model="produit.photo", ngf-pattern="'image/*'", ngf-max-size="20MB", ngf-min-height="100", ngf-select="upload($file)") Télécharger
+				div.col-md-2
+					img(ngf-thumbnail="produit.photo", width="100%")
+			if ingredientsBase.length > 0
+				div.row
+					div.col-md-12
+						div.form-group
+							label(for="ingredient") Bases
+							div.row.ingredients
+								each ingredient in ingredientsBase
+									div.col-md-2.ingredient
+										div.btn(ng-click="modifBase('#{ingredient.id}')", ng-class="{'selected':ingActive['#{ingredient.id}']}" role="button")= ingredient.nom
+			if ingredientsNext.length > 0
+				div.row
+					div.col-md-12
+						div.form-group
+							label(for="ingredient") Ingrédients
+							div.row.ingredients
+								each ingredient in ingredientsNext
+									div.col-md-2.ingredient
+										div.btn(ng-click="modifIngredient('#{ingredient.id}')", ng-class="{'selected':ingActive['#{ingredient.id}']}" role="button")= ingredient.nom
+			div.row
+				div.col-md-4
+					div.form-group
+						label(for="categorie") Catégorie
+						select#categorie.form-control( ng-options="categorie.nom for categorie in parentScope.categories track by categorie._id", ng-model="produit.categorie")
+			div.row
+				div.col-md-8
+					div.form-group
+						label(for="taille") Tailles
+						div.taille(ng-repeat="taille in produit.tailles track by $index")
+							div.form-inline
+								div.form-group
+									label(for="nomTaille") Nom
+									input#nomTaille.form-control(ng-model="taille.nom")
+								div.form-group
+									label(for="prixTaille") Prix
+									input#prixTaille.form-control(ng-model="taille.prix")
+								span.fa-stack.fa-md(ng-click="addTaille()")
+									i.fa.fa-square-o.fa-stack-2x
+									i.fa.fa-plus.fa-stack-1x
+								span.fa-stack.fa-md(ng-click="delTaille($index)", ng-show="$index > 0")
+									i.fa.fa-square-o.fa-stack-2x
+									i.fa.fa-minus.fa-stack-1x
+				div.col-md-4.footer
+					button(role="button", class="btn btn-cancel", ng-click="cancel()")
+						i.fa.fa-close
+						span.title Annuler
+					button(role="button", class="btn btn-valide", ng-click="valide()")
+						i.fa.fa-check
+						span.title Valider
+
+
+
+
+		div.choix.ng-hide(ng-show="choix['simple']")
+			div.row
+				div.col-md-4
+					div.form-group
+						label(for="title") Titre
+						input.form-control(id="title", name="title", ng-model="produit.nom")
+			div.row
+				div.col-md-4
+					div.form-group
+						label(for="prix") Prix
+						input.form-control(id="prix", name="prix", ng-model="produit.prix")
+			div.row
+				div.col-md-4
+					div.form-group
+						label(for="image") Image
+						button.form-control.btn.btn-default(id="image", name="image", ng-model="produit.photo", ngf-pattern="'image/*'", ngf-max-size="20MB", ngf-min-height="100", ngf-select="upload($file)") Télécharger
+				div.col-md-2
+					img(ngf-thumbnail="produit.photo", width="100%")
+			div.row
+				div.col-md-8
+					div.form-group
+						label(for="description") Description
+						textarea.form-control(id="description", name="description", rows="3", ng-model="produit.description")
+			div.row
+				div.col-md-4
+					div.form-group
+						label(for="categorie") Catégorie
+						select.form-control(id="categorie", name="categorie", ng-options="categorie.nom for categorie in parentScope.categories track by categorie._id", ng-model="produit.categorie")
+			div.row
+				div.col-md-9
+					div.form-group
+						label(for="title") Tailles
+						div.taille(ng-repeat="taille in produit.tailles track by $index")
+							div.form-inline
+								div.form-group
+									label(for="nomTaille") Nom
+									input#nomTaille.form-control(ng-model="taille.nom")
+								div.form-group
+									label(for="prixTaille") Prix
+									input#prixTaille.form-control(ng-model="taille.prix")
+								span.fa-stack.fa-md(ng-click="addTaille()")
+									i.fa.fa-square-o.fa-stack-2x
+									i.fa.fa-plus.fa-stack-1x
+								span.fa-stack.fa-md(ng-click="delTaille($index)", ng-show="$index > 0")
+									i.fa.fa-square-o.fa-stack-2x
+									i.fa.fa-minus.fa-stack-1x
+				div.col-md-3.footer
+					button(role="button", class="btn btn-cancel", ng-click="cancel()")
+						i.fa.fa-close
+						span.title Annuler
+					button(role="button", class="btn btn-valide", ng-click="valide()")
+						i.fa.fa-check
+						span.title Valider
+
+
+
+

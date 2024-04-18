@@ -1,0 +1,49 @@
+{
+  "name": "pizzeria",
+  "description": "pizzeria dans les villages",
+  "main": "index.js",
+  "authors": [
+    "loïc Daniel"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "pizza",
+    "pizzeria",
+    "village",
+    "khebab",
+    "restaurant"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.6",
+    "angular-moment": "^1.0.1",
+    "angular-aria": "^1.6.6",
+    "angular-animate": "^1.6.6",
+    "angular-cookies": "^1.6.6",
+    "angular-touch": "^1.6.6",
+    "angular-i18n": "^1.6.6",
+    "font-awesome": "^4.7.0",
+    "angular-resource": "^1.6.6",
+    "bootstrap": "^3.3.7",
+    "ng-dialog": "ngDialog#^1.4.0",
+    "angular-sanitize": "^1.6.6",
+    "ng-csv": "^0.3.6",
+    "angular-google-distance": "*",
+    "ngGeolocation": "^0.0.8",
+    "angular-material": "^1.1.5",
+    "angular-route": "^1.6.6",
+    "ng-file-upload": "^12.2.13",
+    "angular-datetime-inputs": "angular-datetime-input#^0.1.30",
+    "lodash": "^4.17.4",
+    "angular-google-maps": "^2.4.1",
+    "angular-simple-logger": "^0.1.7",
+    "angular-bootstrap-affix": "^0.2.2"
+  }
+}

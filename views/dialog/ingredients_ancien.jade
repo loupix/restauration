@@ -1,0 +1,36 @@
+md-dialog.ingredients(aria-label="Supplément d'ingrédients")
+	md-dialog-content
+		if ingredientsBase.length > 0
+			small
+				div.nameMenu Bases
+			div.row.dialogIngredients
+				each ingredient in ingredientsBase
+					div.col-md-2.ingredient
+						div.btn.ajouter(ng-model="ingredients['#{ingredient.id}']", ng-click="changeBase('#{ingredient.id}')", ng-class="{'selected':ingActive['#{ingredient.id}']}" role="button")= ingredient.nom
+		small
+			div.nameMenu Ingrédients
+		div.row.dialogIngredients
+			each ingredient in ingredientsAll
+				if ingredientsInner[ingredient.id] == true
+					div.col-md-2.ingredient
+						div.btn.enlever(ng-model="ingredients['#{ingredient.id}']", ng-click="delIngredient('#{ingredient.id}')", ng-class="{'selected':ingActive['#{ingredient.id}']}" role="button")= ingredient.nom
+				else
+					div.col-md-2.ingredient
+						div.btn.ajouter(ng-model="ingredients['#{ingredient.id}']", ng-click="addIngredient('#{ingredient.id}')", ng-class="{'selected':ingActive['#{ingredient.id}']}" role="button")= ingredient.nom +" +"+ingredient.prix+" €"
+		br
+		br
+		div.row.addition
+			div.col-md-8.total
+				span Total&nbsp;
+				span(ng-bind-html="getTotal()")
+			div.col-md-4
+				button(role="button", class="btn btn-cancel", ng-click="cancel()")
+					i.fa.fa-close
+					span.title Annuler
+				button(role="button", class="btn btn-valide", ng-click="valide()")
+					i.fa.fa-check
+					span.title Valider
+			div.col-md-8 Sélectionnez vos ingrédients puis valider
+
+
+

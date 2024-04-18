@@ -1,0 +1,15 @@
+md-dialog.dialCategorie(aria-label= title)
+	md-dialog-content
+		div.row
+			div.col-md-10
+				div.form-group
+					label(for="nom") Nom
+					input.form-control(type="text", name="nom", ng-model="categorie.nom")
+		div.row
+			div.col-md-12
+				button(role="button", class="btn btn-cancel", ng-click="cancel()")
+					i.fa.fa-close
+					span.title Annuler
+				button(role="button", class="btn btn-valide", ng-click="valide()")
+					i.fa.fa-check
+					span.title Valider

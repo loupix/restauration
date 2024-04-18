@@ -1,0 +1,56 @@
+doctype html
+html
+    head
+        base(href="/")
+        title= title
+
+        link(rel='icon', href='/images/favicon.ico')
+        link(rel='stylesheet', href='/components/font-awesome/css/font-awesome.min.css')
+        link(rel='stylesheet', href='/components/bootstrap/dist/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/components/bootstrap/dist/css/bootstrap-theme.min.css')
+        link(rel='stylesheet', href='/components/ng-dialog/css/ngDialog.min.css')
+        link(rel='stylesheet', href='/components/ng-dialog/css/ngDialog-theme-default.min.css')
+        link(rel='stylesheet', href='/components/angular-material/angular-material.css')
+        link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css')
+        link(rel='stylesheet', href='/dist/style.css')
+
+        script(type="text/javascript", src="/components/lodash/dist/lodash.min.js")
+        script(type="text/javascript", src="/components/angular/angular.min.js")
+        script(type="text/javascript", src="/components/angular-simple-logger/dist/angular-simple-logger.min.js")
+
+        script(type="text/javascript", src="/components/angular-jquery/dist/angular-jquery.min.js")
+        script(type="text/javascript", src="/components/angular-bootstrap-affix/dist/angular-bootstrap-affix.min.js")
+
+        script(type="text/javascript", src="/components/angular-animate/angular-animate.min.js")
+        script(type="text/javascript", src="/components/angular-aria/angular-aria.min.js")
+        script(type="text/javascript", src="/components/angular-material/angular-material.min.js")
+        script(type="text/javascript", src="/components/angular-cookies/angular-cookies.min.js")
+        script(type="text/javascript", src="/components/angular-route/angular-route.min.js")
+        script(type="text/javascript", src="/components/angular-resource/angular-resource.min.js")
+        script(type="text/javascript", src="/components/ng-file-upload/ng-file-upload.min.js")
+
+        script(type="text/javascript", src="/components/angular-sanitize/angular-sanitize.min.js")
+        script(type="text/javascript", src="/components/ng-csv/build/ng-csv.min.js")
+
+        script(type="text/javascript", src="/components/angular-datetime-inputs/dist/datetime-inputs.min.js")
+        script(type="text/javascript", src="/components/moment/moment.js")
+        script(type="text/javascript", src="/components/angular-i18n/angular-locale_fr-fr.js")
+        script(type="text/javascript", src="/components/angular-moment/angular-moment.min.js")
+
+        script(type="text/javascript", src="//maps.googleapis.com/maps/api/js?key=AIzaSyDErLpJaVJgJA_L5QHKSPghgTsLHZp4WzE&libraries=places")
+        script(type="text/javascript", src="/components/angular-google-maps/dist/angular-google-maps.min.js")
+        script(type="text/javascript", src="/components/ngGeolocation/ngGeolocation.min.js")
+        script(type="text/javascript", src="/components/angular-google-distance/dist/angular-google-distance.min.js")
+        
+
+        script(type="text/javascript", src="/components/angular-touch/angular-touch.min.js")
+        script(type="text/javascript", src="/components/ng-dialog/js/ngDialog.min.js")
+        script(type="text/javascript", src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js")
+        script(type="text/javascript", src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js")
+        script(type="text/javascript", src="/dist/all.min.js")
+        div !{req.toastr.render()}
+
+    body(ng-app="restaurant")
+        block content
+    footer.footer
+        block footer

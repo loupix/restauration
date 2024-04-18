@@ -1,0 +1,121 @@
+.admin {
+  background: white;
+  color: #231f20;
+  margin: 1em;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+.admin form.search {
+  margin: 0 0.4em 2em 0.4em;
+}
+.admin form.search .form-control,
+.admin form.search .input-group-addon {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  border-color: #4f4c4c;
+}
+.admin div.contentData {
+  margin: 0 0.4em;
+  padding: 0;
+  border: 1px solid #555;
+  overflow: hidden;
+  height: 100%;
+}
+.admin div.contentData i.fa-refresh {
+  float: left;
+}
+.admin div.contentData div.row {
+  padding: 0.4em 0;
+}
+.admin div.contentData div.row.head {
+  background-color: #b0aeaf;
+  color: #000;
+}
+.admin div.contentData div.row.object {
+  border-bottom: 1px solid #AAA;
+}
+.admin div.contentData div.row.object div.title {
+  margin-left: 2em;
+}
+.admin div.contentData div.row.object button {
+  margin-right: 0.8em;
+}
+.admin div.contentData div.title {
+  font-size: 1.2em;
+  margin-left: 1.1em;
+  margin-top: 0.2em;
+  vertical-align: middle;
+  text-align: :center;
+}
+.admin div.contentData div.configuration button.btn {
+  margin: 0.5em;
+  display: inline-block;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  color: white;
+  font-size: 0.8em;
+}
+.admin div.contentData div.configuration button.btn.btn-cancel {
+  background-color: #000;
+}
+.admin div.contentData div.configuration button.btn.btn-valide {
+  font-size: 1em;
+  background-color: #226f34;
+}
+.admin div.contentData div.configuration button.btn span.title {
+  margin-left: 5px;
+}
+.admin div.contentData div.configuration div.horraire span.fa-stack.valide,
+.admin div.contentData div.configuration div.fermeture span.fa-stack.valide {
+  color: #226f34;
+}
+.admin div.contentData div.configuration div.horraire span.fa-stack.remove,
+.admin div.contentData div.configuration div.fermeture span.fa-stack.remove {
+  color: #c01a2c;
+}
+.admin div.contentData .form-group {
+  margin: 0.5em;
+}
+.admin div.contentData .form-group label {
+  font-size: 1em;
+}
+.admin div.contentData .form-group .form-control {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  border-color: #4f4c4c;
+  margin: 0.1em auto;
+  margin-left: 0;
+}
+.admin div.contentData .form-group .info {
+  margin-top: 0.5em;
+  font-size: 1.2em;
+  vertical-align: middle;
+  text-align: :center;
+}
+.admin div.contentData div.preparation .form-control {
+  width: 100%;
+}
+.admin div.contentData div.preparation div.title {
+  margin-left: 0 !important;
+  vertical-align: middle;
+  text-align: :center;
+}
+.admin .sidebarStyle {
+  background-color: #231f20;
+}
+.admin .nav.nav-pills.nav-stacked li a {
+  background-color: #231f20 !important;
+  color: white;
+}
+.admin .nav.nav-pills.nav-stacked li.active a {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-left: -15px;
+}
+.admin .content {
+  margin: 2em;
+}

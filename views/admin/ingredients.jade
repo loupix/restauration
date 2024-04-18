@@ -1,0 +1,39 @@
+div(ng-init="init()")
+	form.search
+		div.form-group
+			div.input-group
+				input.form-control(ng-model="search", ng-change="onSearch()")
+				div.input-group-addon(ng-click="onSearch()")
+					span.glyphicon.glyphicon-search
+	div.contentData
+		div.row.head
+			div.col-md-4
+				//- i.fa.fa-refresh.fa-spin.fa-2x.fa-fw(ng-show="loading") 
+				div.title Ingrédient
+			div.col-md-1
+				div.title En stock
+			div.col-md-1
+				div.title Est base
+			div.col-md-4
+				div.title Prix en supplément
+			div.col-md-2
+				button.btn.btn-primary.btn-sm(ng-click="showDialog($event, false, 'ajouter')") Ajouter
+		div.row.object(ng-repeat="ingredient in ingredientsAfficher")
+			div.col-md-4
+				div.title {{ ingredient.nom }}
+			div.col-md-1
+				div.form-group
+					input(type="checkbox", ng-model="ingredient.stock", ng-change="modif(ingredient)")
+			div.col-md-1
+				div.form-group
+					input(type="checkbox", ng-model="ingredient.base", ng-change="modif(ingredient)")
+			div.col-md-4
+				div.row
+					div.col-md-8
+						input.form-control(type="number", ng-min="0", step="0.1", ng-model="ingredient.prix", ng-change="modif(ingredient)")
+					div.col-md-2.title €
+			div.col-md-2
+				button.btn.btn-primary.btn-sm(ng-click="showDialog($event, ingredient, 'modifier')")
+					span.glyphicon.glyphicon-pencil
+				button.btn.btn-primary.btn-sm(ng-click="delete(ingredient)")
+					span.glyphicon.glyphicon-trash

@@ -1,0 +1,71 @@
+div.content.contentPanier(ng-init="init()")
+	h1.title= title
+	div.row.livraison
+		div.col-md-2.col-md-offset-2.choix(ng-class="{'selected' : livraison == 'surPlace'}", ng-click="setLivraison('surPlace')")
+			i.fa.fa-cutlery.fa-5x
+			div.text Je récupere ma commande
+		div.col-md-2.choix(ng-class="{'selected' : livraison == 'chezSoi'}", ng-click="setLivraison('chezSoi')")
+			i.fa.fa-car.fa-5x
+			div.text Je veux etre livrée
+
+
+	div.row.head
+		div.col-md-6
+			div.row
+				div.col-md-4 &nbsp;
+				div.col-md-4 &nbsp;
+		div.col-md-6
+			div.col-md-4 Quantite
+			div.col-md-4 Prix unitaire
+			div.col-md-4 Prix total
+
+	each commande in panier.commandes
+		div.row.commande
+			div.col-md-5
+				div.row
+					div.col-md-3.nom= commande.produit.nom
+					div.col-md-4.taille
+						if commande.produit.tailles.length > 0
+							md-input-container
+								md-select.md-no-underline(ng-model="infosCmds['#{commande._id}'].taille")
+									each taille in commande.produit.tailles
+										md-option(value="#{taille._id}")= taille.nom
+				div.row
+					div.col-md-8.ingredients= commande.produit.ingredientsTxt
+				div.row
+					div.col-md-8
+						each ing in commande.ingredients.more
+							div.more= ing.nom+" +"+ing.prix+"€"
+						each ing in commande.ingredients.less
+							div.less= ing.nom
+			div.col-md-1
+				i.fa.fa-2x.fa-trash(ng-click="delCommande('#{commande._id}')")
+			div.col-md-6
+				div.col-md-4
+					div.row.quantite
+						span.fa-stack.fa-md(ng-click="delQuantite('#{commande._id}')")
+							i.fa.fa-square-o.fa-stack-2x
+							i.fa.fa-minus.fa-stack-1x
+						input(type="text", ng-model="infosCmds['#{commande._id}'].quantite", style="width:30px")
+						span.fa-stack.fa-md(ng-click="addQuantite('#{commande._id}')")
+							i.fa.fa-square-o.fa-stack-2x
+							i.fa.fa-plus.fa-stack-1x
+				div.col-md-4= commande.produit.prix+" €"
+				div.col-md-4 {{ infosCmds['#{commande._id}'].total+" €" }}
+	div.row
+		h4.col-md-2.col-md-offset-8 Total
+		h4.col-md-2(ng-model="panier.total") {{ panier.total+" €" }}
+	div.row.footer
+		form
+			div.col-md-6
+				label(for="commentaire") Commentaire
+				br
+				textarea(id="commentaire")
+				br
+				div.temps Temps éstimée: #{dureeTotal}min
+			div.col-md-4.col-md-offset-2
+				button.btn.btn-lg(ng-click="go('/livraison')") Continuer
+
+
+
+

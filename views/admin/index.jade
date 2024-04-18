@@ -1,0 +1,33 @@
+extends ../layout_admin
+
+block content
+	div.admin.content
+		h3= title
+		br
+		div.row
+			div.col.col-xs-6.col-md-4.sidebarStyle
+				div.text-xs-center.text-sm-left
+					ul.nav.nav-pills.nav-stacked
+						li.active
+							a(href="#") Boutique
+						li
+							a(href="/admin/categorie") Catégories
+						li
+							a(href="/admin/produits") Produits
+					ul.nav.nav-pills.nav-stacked
+						li.active
+							a(href="#") Paramètres
+						li
+							a(href="/admin/ingredients") Ingrédients
+						li
+							a(href="/admin/configuration") Configuration
+						li
+							a(href="/admin/deconnect") Déconnexion
+					ul.nav.nav-pills.nav-stacked
+						li.active
+							a(href="#") Liste client
+						li
+							a(href="/admin/clients") Clients
+
+			div.col.col-xs-12.col-md-8
+				ng-view

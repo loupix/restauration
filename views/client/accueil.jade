@@ -1,0 +1,50 @@
+.container(ng-init="init('#{catEncours._id}')")
+  br
+  .row
+    .col-xs-12
+      ul.nav.nav-tabs
+        each categorie in categories
+          li(ng-class="{'active':catId == '#{categorie._id}'}")
+            a(href="javascript:void(0);", data-tootgle="tabs", ng-click="changeCategorie('#{categorie._id}')")= categorie.nom
+#commander.section-catalog
+  .container
+    .row
+      .col-xs-12
+        .pizza-builder__wrap-check(ng-hide="onLoadProduits")
+          .pizza-builder__item.pizza-builder__item_mod-b(tabindex='1', ng-repeat="prod in produits track by prod._id")
+            .pizza-builder__check-img.pizza-builder__check-img.pizza-builder__check-img_mod-a
+              img.img-responsive.center-block(ng-src='{{ prod.photo }}', height='258', width='258', alt='Foto')
+            .pizza-builder__check-name {{ prod.nom }}
+            .pizza-builder__check-description.pizza-builder__check-description_mod-a {{ prod.description }}
+            .pizza-builder__check-description.pizza-builder__check-description_mod-a {{ prod.ingredientsTxt }}
+
+            //- .pizza-builder__check-description.pizza-builder__check-description_mod-a.ng-hide(ng-show="infosProds[prod._id].taille.prix > 0") + Taille {{ infosProds[prod._id].taille.nom+" +"+infosProds[prod._id].taille.prix }}
+            .pizza-builder__check-description.pizza-builder__check-description_mod-a(ng-repeat="ing in infosProds[prod._id].ingredients.less") - {{ ing.nom }}
+            .pizza-builder__check-description.pizza-builder__check-description_mod-a(ng-repeat="ing in infosProds[prod._id].ingredients.more") + {{ ing.nom+" +"+ing.prix+" €" }}
+
+            .pizza-builder__check-price.pizza-builder__check-price_mod-a {{ infosProds[prod._id].total + "€"}}
+
+            a.pizza-builder__btn-modif.ui-btn.ui-btn_mod-a.btn-effect.ng-hide(href="javascript:void(0);", ng-show="prod.ingredients.length > 0", ng-click="showDialog($event, prod._id);", style="padding-left:5px;") Modifier
+
+            //- select.selectpicker(data-style="ui-select", ng-model="infosProds[prod._id].taille._id", ng-change="calculTotalProd(prod._id)")
+            //-   option(value="{{ taille._id }}", ng-repeat="taille in prod.tailles") {{ taille.nom }}
+
+            a.pizza-builder__btn-select.ui-btn.ui-btn-primary.btn-effect(href='javascript:void(0);', ng-click="ajout(prod._id)") ajouter
+      .ng-hide(ng-show="onLoadProduits")
+          #page-view(style="margin-top:0;padding-bottom:35%;")
+            span.spinner
+
+
+section.section-subscribe
+  form.form-subscribe(action='post')
+    .container
+      .row
+        .col-xs-12
+          h2.ui-title-block.ui-title-block_mod-a.form-subscribe__title Inscrivez-vous à la newsletter et recevez des offres exclusives.
+          form(action="anthony.lacroix01@gmail.com", method="post", enctype="text/plain")
+            input.form-control(type='text', placeholder='Entrez votre adresse email', required='')
+            input(type="hidden", value="Demande de newsletter")
+            button.ui-btn.ui-btn_mod-c.btn-effect.btn-effect souscrire
+
+
+

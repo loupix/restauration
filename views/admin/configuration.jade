@@ -1,0 +1,125 @@
+div(ng-init="init()")
+	div.contentData.configuration
+		div.row
+			div.col-md-5.col-md-offset-1
+				div.form-group
+					label(for="enseigne") Nom du restaurant
+					input.form-control(type="text", name="enseigne", id="enseigne", ng-model="restaurant.enseigne")
+				div.form-group
+					label(for="enseigne") Photo du restaurant
+					img(ngf-thumbnail="restaurant.photo", width="100%")
+					button.form-control.btn.btn-default(id="image", name="image", ng-model="restaurant.photo", ngf-pattern="'image/*'", ngf-max-size="20MB", ngf-min-height="100", ngf-select="upload($file)") Télécharger
+					
+				div.form-group
+					label(for="adresse") Adresse
+					input.form-control(type="text", name="adresse", id="adresse", ng-model="place", g-places-autocomplete, options="autocompleteOptions", force-selection="true", ng-change="loadPlace()")
+				div.form-group
+					label(for="ville") Ville
+					input.form-control(type="text", name="ville", id="ville", ng-model="restaurant.adresse.ville")
+				div.form-group
+					label(for="codePostal") Code postal
+					input.form-control(type="number", name="codePostal", id="codePostal", ng-model="restaurant.adresse.codePostal")
+				div.form-group
+					label(for="email") Email
+					input.form-control(type="text", name="email", id="email", ng-model="restaurant.email")
+				div.form-group
+					label(for="telephone") Téléphone
+					input.form-control(type="text", name="telephone", id="telephone", ng-model="restaurant.telephone")
+				
+			div.col-md-5
+				div.checkbox
+					label(for="livraison")
+						input#livraison(type="checkbox", ng-model="restaurant.livraison.livraison")
+						b Livraison
+				div.checkbox(ng-hide="restaurant.livraison.livraison")
+					label(for="paieSurPlace")
+						input#paieSurPlace(type="checkbox", ng-model="restaurant.livraison.paiement.surPlace")
+						b Autoriser paiement au retrait de la commande
+				div.choixLivraison.ng-hide(ng-show="restaurant.livraison.livraison")
+					div.checkbox
+						label(for="livraisonPaie")
+							input#livraisonPaie(type="checkbox", ng-model="restaurant.livraison.paiement.livraison")
+							b Autoriser paiement à la livraison
+					div.form-group
+						label(for="livraisonDistance") Distance de livraison
+						div.row
+							div.col-md-8
+								input#livraisonDistance.form-control(type="number", ng-model="restaurant.livraison.distance")
+							div.col-md-2.info Km
+					div.form-group
+						label(for="livraisonDuree") Duree de livraison
+						div.row
+							div.col-md-8
+								input#livraisonDuree.form-control(type="number", ng-model="restaurant.livraison.duree")
+							div.col-md-2.info Min
+					div.form-group
+						label(for="livraisonTarif") Tarif de livraison
+						div.row
+							div.col-md-8
+								input#livraisonTarif.form-control(type="number", ng-model="restaurant.livraison.tarif")
+							div.col-md-2.info €
+					div.form-group
+						label(for="livraisonMinGratuin") Livraison gratuite si minimum de commande de
+						div.row
+							div.col-md-8
+								input#livraisonMinGratuin.form-control(type="number", ng-model="restaurant.livraison.minGratuit")
+							div.col-md-2.info €
+
+
+				div.form-group
+					label(for="login") Login
+					input#login.form-control(type="text", name="login", ng-model="restaurant.admin.username")
+				div.form-group
+					label(for="password") Password
+					input#password.form-control(type="password", name="password", ng-model="restaurant.admin.password")
+				i.fa.fa-spinner.fa-pulse.fa-2x.fa-fw(ng-show="onModif")
+				button.btn.btn-primary(ng-click="modif()", ng-hide="onModif") Enregistrer
+				button.btn.btn-warning(ng-click="cancel()") Annuler
+
+		div.row
+			div.col-md-11.col-md-offset-1
+				div.form-group
+					label(for="horraire") 
+						span Horraire
+						span.fa-stack.fa-sm(ng-click="addHorraire()")
+							i.fa.fa-square-o.fa-stack-2x
+							i.fa.fa-plus.fa-stack-1x
+					div.horraires
+						div.form-inline.horraire(ng-repeat="horraire in restaurant.horraires")
+							div.form-group
+								label(for="jour") Jour &nbsp;
+								select.form-control#jour(name="jour", ng-model="horraire.jour", ng-options="(jour|date:'EEEE') for jour in joursSemaine track by jour")
+							div.form-group
+								label(for="matinOuvert") Matin &nbsp;
+								select.form-control#matinOuvert(name="matinOuvert", ng-model="horraire.matin.ouverture", ng-options="(heure|date:'H:mm') for heure in heureSemaine track by heure")
+								label(for="matinFerme")
+								select.form-control#matinFerme(name="matinFerme", ng-model="horraire.matin.fermeture", ng-options="(heure|date:'H:mm') for heure in heureSemaine track by heure")
+							div.form-group
+								label(for="apremsOuvert") ApresMidi &nbsp;
+								select.form-control#apremsOuvert(name="apremsOuvert", ng-model="horraire.apresMidi.ouverture", ng-options="(heure|date:'H:mm') for heure in heureSemaine track by heure")
+								label(for="apremsFerme")
+								select.form-control#apremsFerme(name="apremsFerme", ng-model="horraire.apresMidi.fermeture", ng-options="(heure|date:'H:mm') for heure in heureSemaine track by heure")
+							span.fa-stack.fa-sm.valide(ng-click="modif()")
+								i.fa.fa-square-o.fa-stack-2x
+								i.fa.fa-check.fa-stack-1x
+							span.fa-stack.fa-sm.remove(ng-click="delHorraire(horraire)")
+								i.fa.fa-square-o.fa-stack-2x
+								i.fa.fa-minus.fa-stack-1x
+				div.form-group
+					label(for="fermeture")
+						span Fermeture exceptionnel
+						span.fa-stack.fa-sm(ng-click="addFermeture()")
+							i.fa.fa-square-o.fa-stack-2x
+							i.fa.fa-plus.fa-stack-1x
+					div.fermetures
+						div.form-inline.fermeture(ng-repeat="fermeture in restaurant.fermetures")
+							div.form-group
+								label(for="jourFerme") Jour fermé &nbsp;
+								md-datepicker#jourFerme(ng-model="fermeture", ng-change="modif()")
+								span.fa-stack.fa-sm.valide(ng-click="modif()")
+									i.fa.fa-square-o.fa-stack-2x
+									i.fa.fa-check.fa-stack-1x
+								span.fa-stack.fa-sm.remove(ng-click="delFermeture(fermeture)")
+									i.fa.fa-square-o.fa-stack-2x
+									i.fa.fa-minus.fa-stack-1x
+

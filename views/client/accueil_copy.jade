@@ -1,0 +1,99 @@
+div#accueil.enseigne
+	img(src=restaurant.photo)
+	div.commander
+		button.btn(ng-click="gotoAnchor('commander')") 
+			span Commander
+		i.fa.fa-angle-double-down
+			
+div#commander.content(ng-init="init('#{catEncours._id}')")
+	div.col-md-offset-10
+		div.panier(bs-affix, data-offset-top="455", ng-click="go('/panier')")
+			div.row
+				div.col-xs-6
+					span.fa.fa-3x.fa-shopping-basket
+				div.col-xs-6
+					div.prix(ng-bind-html="getTotal()")
+			div.finaliser
+				a(href="#/panier") Finaliser la commande
+	
+	h2.col-md-offset-5 LA CARTE
+
+	div.carte
+		div.categories
+			ul.nav.nav-pills
+				each categorie in categories
+					li.categorie(role="presentation", style="width:#{100/categories.length}%", ng-class="{'active' : categorie._id == '#{categorie._id}'}" ng-click="changeCategorie('#{categorie._id}')")
+						a(href="#")= categorie.nom
+		div.row.produits(ng-show="isInit")
+			div.prodBlack(ng-style="{'z-index': backProduit}", ng-click="closeCommandes()")
+			div.col-md-3.produit(ng-click="changeProduit(prod._id)", ng-style="{'z-index': produitZindex[prod._id]}", ng-repeat="prod in produits")
+				div.image
+					img(src="{{ prod.photo }}")
+				div.row.infos
+					div.col-md-4.nom {{ prod.nom }}
+					div.col-md-4.taille 
+						md-select.md-no-underline.ng-hide(ng-show="prod.tailles.length > 0", ng-model="infosProds[prod._id].taille._id", ng-change="calculTotalProd(prod._id)")
+							md-option(value="{{ taille._id }}" ng-repeat="taille in prod.tailles") {{ taille.nom }}
+					div.col-md-4.prix {{ infosProds[prod._id].total + "€"}}
+				div.row.ng-hide(ng-show="prod.ingredients.length > 0")
+					div.col-md-12.ingredients {{ prod.ingredientsTxt }}
+				div.row.commande.ng-hide(ng-show="produitOpen[prod._id]==true")
+					div.row.ng-hide(ng-show="prod.ingredients.length > 0")
+						div.col-md-12.ajout(ng-click="showDialog($event, prod._id)")
+							span.fa-stack.fa-md
+								i.fa.fa-square-o.fa-stack-2x
+								i.fa.fa-plus.fa-stack-1x
+							span.txt 
+								span.ajouter Ajouter 
+								span /
+								span.retirer Retirer 
+								span des ingredients
+							br
+							div.ingredients
+								div.supp(ng-repeat="ing in infosProds[prod._id].ingredients.more") {{ ing.nom+" +"+ing.prix+" €" }}
+								div.less(ng-repeat="ing in infosProds[prod._id].ingredients.less") {{ ing.nom }}
+
+					div.row.achat
+						div.col-md-6
+							div.row
+								div.col-md-2
+									span.fa-stack.fa-md(ng-click="delQuantite(prod._id)")
+										i.fa.fa-square-o.fa-stack-2x
+										i.fa.fa-minus.fa-stack-1x
+								div.col-md-2
+									input(type="text", ng-model="infosProds[prod._id].quantite", style="width:30px")
+								div.col-md-2
+									span.fa-stack.fa-md(ng-click="addQuantite(prod._id)")
+										i.fa.fa-square-o.fa-stack-2x
+										i.fa.fa-plus.fa-stack-1x
+						div.col-md-6
+							button.btn.btn-primary.btn-sm(ng-click="ajout(prod._id)") Ajouter au panier
+
+	// Format angular
+
+div.borderNext
+div#coordonnee.content
+	h2.col-md-offset-5 COORDONNEES
+	div.row.coordonnees
+		div.col-md-5.col-md-offset-1
+			div.map 
+				ui-gmap-google-map(center="{latitude:#{restaurant.adresse.latitude}, longitude:#{restaurant.adresse.longitude}}", zoom="15")
+					ui-gmap-marker(idKey="1", coords="{latitude:#{restaurant.adresse.latitude}, longitude:#{restaurant.adresse.longitude}}")
+		div.col-md-4
+			ul
+				li
+					address= restaurant.adresse.adresse
+				li
+					address= restaurant.adresse.codePostal+ " " + restaurant.adresse.ville
+			ul.horraires
+				li.title Horraires
+				each horraire in restaurant.horraires
+					li= moment(horraire.jour).format("ddd") +" "+ moment(horraire.matin.ouverture).format("H:mm") +" - "+ moment(horraire.matin.fermeture).format("H:mm") +"     "+ moment(horraire.apresMidi.ouverture).format("H:mm") +" - "+ moment(horraire.apresMidi.fermeture).format("H:mm")
+			if restaurant.fermetures.length > 0
+				ul.horraires
+					li.title Fermeture exceptionnelle
+					each fermeture in restaurant.fermetures
+						li= moment(fermeture).format("ll")
+	br
+	h2.col-md-offset-5
+		abbr= restaurant.telephone

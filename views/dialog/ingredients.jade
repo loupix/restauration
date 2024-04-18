@@ -1,0 +1,168 @@
+md-dialog.ingredients(aria-label="Supplément d'ingrédients")
+    md-dialog-content
+        #wrapper.layout-theme.animated-css(data-header='sticky', data-header-top='200')
+            #sb-site
+                .wrap-content
+                    .section_mod-k
+                        form.pizza-builder(action='post', name='pizza-size')
+                          .container(style="width:auto;")
+                            .row
+                              .col-md-8
+                                #accordion-1.accordion.accordion_mod-c.panel-group
+                                  .panel
+                                    .panel-heading
+                                      a.btn-collapse(data-toggle='collapse', href='#collapse-0')
+                                        i.icon
+                                      h3.panel-title
+                                        span.panel-title__number 1.
+                                        | Sélectionnez votre taille
+                                    #collapse-0.panel-collapse.collapse.in
+                                      .panel-body
+                                        .pizza-builder__wrap-check
+                                          if tailles.length > 0
+                                            each taille in tailles
+                                              input.pizza-builder__check.hidden(id='#{taille.id}', type='checkbox', ng-click="changeTaille('#{taille.id}')", ng-checked="tailleActive['#{taille.id}']", ng-model="tailleActive['#{taille.id}']")
+                                              label.pizza-builder__item(for='#{taille.id}')
+                                                //- span.pizza-builder__check-img
+                                                //-   img.img-responsive.center-block(src='assets/media/list-saunce/sauce-cheese.png', height='135', width='135', alt='Foto')
+                                                span.pizza-builder__check-name= taille.nom
+                                                i.icon-check.fa.fa-check
+                                          
+                                        // end pizza-builder__wrap-check
+                                      // end panel-body
+                                    // end panel-collapse
+                                  // end panel
+
+                                  .panel
+                                    .panel-heading
+                                      a.btn-collapse(data-toggle='collapse', href='#collapse-1')
+                                        i.icon
+                                      h3.panel-title
+                                        span.panel-title__number 2.
+                                        | Sélectionnez votre sauce
+                                    #collapse-1.panel-collapse.collapse.in
+                                      .panel-body
+                                        .pizza-builder__wrap-check
+                                            if ingredientsBase.length > 0
+                                                each ingredient in ingredientsBase
+                                                        input.pizza-builder__check.hidden(id='#{ingredient.id}', type='checkbox', ng-click="changeBase('#{ingredient.id}')", ng-checked="ingActive['#{ingredient.id}']", )
+                                                        label.pizza-builder__item(for='#{ingredient.id}')
+                                                          //- span.pizza-builder__check-img
+                                                          //-   img.img-responsive.center-block(src='assets/media/list-saunce/sauce-cheese.png', height='135', width='135', alt='Foto')
+                                                          span.pizza-builder__check-name= ingredient.nom
+                                                          i.icon-check.fa.fa-check
+                                          
+                                        // end pizza-builder__wrap-check
+                                      // end panel-body
+                                    // end panel-collapse
+                                  // end panel
+
+
+                                  .panel
+                                    .panel-heading
+                                      a.btn-collapse(data-toggle='collapse', href='#collapse-2')
+                                        i.icon
+                                      h3.panel-title
+                                        span.panel-title__number 3.
+                                        | Sélectionnez vos ingrédients
+                                    #collapse-2.panel-collapse.collapse.in
+                                      .panel-body
+                                        .pizza-builder__wrap-check
+                                          each ingredient in ingredientsAll
+                                                if ingredientsInner[ingredient.id] == true
+                                                  input.pizza-builder__check.hidden(id='#{ingredient.id}', type='checkbox', ng-click="delIngredient('#{ingredient._id}')", ng-checked="!ingActive['#{ingredient.id}']")
+                                                  label.pizza-builder__item(for='#{ingredient.id}')
+                                                    //- span.pizza-builder__check-img
+                                                    //-   img.img-responsive.center-block(src='/assets/media/list-saunce/sauce-garlic-butter.png', height='135', width='135', alt='Foto')
+                                                    span.pizza-builder__check-name= ingredient.nom
+                                                    i.icon-check.fa.fa-check
+                                                else
+                                                  input.pizza-builder__check.hidden(id='#{ingredient.id}' type='checkbox', ng-click="addIngredient('#{ingredient._id}')", ng-checked="ingActive['#{ingredient.id}']")
+                                                  label.pizza-builder__item(for='#{ingredient.id}')
+                                                    //- span.pizza-builder__check-img
+                                                    //-   img.img-responsive.center-block(src='/assets/media/list-saunce/sauce-garlic-butter.png', height='135', width='135', alt='Foto')
+                                                    span.pizza-builder__check-name= ingredient.nom
+                                                    span.pizza-builder__check-price=ingredient.prix+" €"
+                                                    i.icon-check.fa.fa-check
+                                          
+                                        // end pizza-builder__wrap-check
+                                      // end panel-body
+                                    // end panel-collapse
+                                  // end panel
+
+                                  //- .panel
+                                  //-   .panel-heading
+                                  //-     a.btn-collapse(data-toggle='collapse', href='#collapse-3')
+                                  //-       i.icon
+                                  //-     h3.panel-title
+                                  //-       span.panel-title__number 3.
+                                  //-       | Validez votre modification
+                                  //-   #collapse-3.panel-collapse.collapse.in
+                                  //-     .panel-body
+                                  //-       .pizza-builder__wrap-check
+                                  //-           .row
+                                  //-              .col-xs-6
+                                  //-                   h3(style="text-align:center;")
+                                  //-                       span Total&nbsp;
+                                  //-                       span {{ total }}&nbsp;&euro;
+                                  //-               .col-xs-6
+                                  //-                   br
+                                  //-                   a.ui-btn.ui-btn_mod-b.btn-effect(role="button", ng-click="cancel()") Annuler
+                                  //-                   a.ui-btn.ui-btn-primary.btn-effect(role="button", ng-click="valide()") Valider
+                              .col-md-4
+                                section.section-table-order
+                                  h2.table-order__title.ui-title-inner Vos modifications
+                                  .table-container
+                                    table.table-order(style="color:white;")
+                                      thead
+                                        tr
+                                          th PRODUIT
+                                          th TOTAL
+                                      tbody
+                                        tr.ng-hide(ng-show="produit.tailles.length > 0 && produit.taille.prix > 0")
+                                          td
+                                            .enumerator
+                                              //- a.enumerator__btn.enumerator__btn-minus.js-minus
+                                              //-   i.fa.fa-minus-circle
+                                              //- a.enumerator__btn.enumenator__btn-plus.js-plus
+                                              //-   i.fa.fa-plus-circle
+                                              span.color_primary +&nbsp;
+                                              span.enumerator__title Taille {{ produit.taille.nom }}
+                                          td.ng-hide(ng-show="produit.taille.prix > 0")
+                                            span.table-order__price {{ produit.taille.prix }}&nbsp;&euro;
+                                              //- input.enumerator__input(type='text', placeholder='1')
+
+                                        tr(ng-repeat="ing in produit.ingredients.less")
+                                          td
+                                            .enumerator
+                                              //- a.enumerator__btn.enumerator__btn-minus.js-minus
+                                              //-   i.fa.fa-minus-circle
+                                              //- a.enumerator__btn.enumenator__btn-plus.js-plus
+                                              //-   i.fa.fa-plus-circle
+                                              span.color_primary -&nbsp;
+                                              span.enumerator__title {{ ing.nom }}
+                                              //- input.enumerator__input(type='text', placeholder='1')
+                                          td
+                                            i.icon-close.fa.fa-times(ng-click="delIngredient(ing._id)")
+
+                                        tr(ng-repeat="ing in produit.ingredients.more")
+                                          td
+                                            .enumerator
+                                              //- a.enumerator__btn.enumerator__btn-minus.js-minus
+                                              //-   i.fa.fa-minus-circle
+                                              //- a.enumerator__btn.enumenator__btn-plus.js-plus
+                                              //-   i.fa.fa-plus-circle
+                                              span.color_primary +&nbsp;
+                                              span.enumerator__title {{ ing.nom }}
+                                              //- input.enumerator__input(type='text', placeholder='1')
+                                          td
+                                            span.table-order__price {{ ing.prix }}&nbsp;&euro;
+                                            i.icon-close.fa.fa-times(ng-click="addIngredient(ing._id)")
+                                      
+                                        tr
+                                          td.table-order__total Total&nbsp;
+                                          td.table-order__total {{ total }}&nbsp;&euro;
+                                  a.table-order__btn.ui-btn_mod-b.ui-btn.btn-effect(role="button", ng-click="cancel()") Annuler
+                                  a.table-order__btn.ui-btn.ui-btn-primary.btn-effect(role="button", ng-click="valide()") Ajouter
+
+

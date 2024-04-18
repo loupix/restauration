@@ -1,0 +1,44 @@
+div(ng-init="init()")
+	form.search
+		div.form-group
+			div.input-group
+				input.form-control(ng-model="search", ng-change="onSearch()")
+				div.input-group-addon(ng-click="onSearch()")
+					span.glyphicon.glyphicon-search
+	div.contentData
+		div.row.head
+			div.col-md-10
+				i.fa.fa-refresh.fa-spin.fa-2x.fa-fw(ng-show="loading")
+				div.row
+					div.col-md-6
+						select.form-control(ng-model="categorieEnCour", ng-change="loadProduits()", ng-options="cat as cat.nom for cat in categories")
+			div.col-md-2
+				button.btn.btn-primary.btn-sm(ng-click="showDialog($event, false, 'ajouter')") Ajouter
+		div.row.titles
+			div.col-md-2 
+				div.title Titre
+			div.col-md-4 
+				div.title Ingrédients
+			div.col-md-1 
+				div.title Stock
+			div.col-md-3 
+				div.title Temp de préparation
+			div.col-md-2 
+				div.title Options
+		div.row.object(ng-repeat="produit in produitsAfficher")
+			div.col-md-2
+				div.title {{ produit.nom }}
+			div.col-md-4 {{ produit.ingredientsTxt }}
+			div.col-md-1
+				div.title
+					input.form-control(type="checkbox", ng-model="produit.stock", ng-change="modif(produit)")
+			div.col-md-3
+				div.row.preparation
+					div.col-md-5.col-md-offset-1
+						input.form-control(type="test", ng-model="produit.preparation", ng-change="modif(produit)")
+					div.col-md-2.title min.
+			div.col-md-2
+				button.btn.btn-primary.btn-sm(ng-click="showDialog($event, produit, 'modifier')")
+					span.glyphicon.glyphicon-pencil
+				button.btn.btn-primary.btn-sm(ng-click="delete(produit)")
+					span.glyphicon.glyphicon-trash

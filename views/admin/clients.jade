@@ -1,0 +1,33 @@
+div(ng-init="init()")
+	form.search
+		div.form-group
+			div.input-group
+				input.form-control(ng-model="search", ng-change="onSearch()")
+				div.input-group-addon(ng-click="onSearch()")
+					span.glyphicon.glyphicon-search
+	div.contentData
+		div.row.head
+			div.col-md-2
+				div.title Nom
+			div.col-md-2
+				div.title Prénom
+			div.col-md-3
+				div.title Email
+			div.col-md-3
+				div.title Adresse
+			div.col-md-2
+				button.btn.btn-primary.btn-sm(ng-csv="export.values", csv-header="export.header" lazy-load="true", filename="{{ export.filename }}.csv", field-separator="{{export.separator}}") Exporter
+		div.row.object(ng-repeat="client in clientsAfficher")
+			div.col-md-2
+				div.title {{ client.nom }}
+			div.col-md-2
+				div.title {{ client.prenom }}
+			div.col-md-3
+				div.title {{ client.email }}
+			div.col-md-3
+				div.title {{ client.adresse.adresse }}
+			//- div.col-md-2
+			//- 	button.btn.btn-primary.btn-sm(ng-click="popinModif(client)")
+			//- 		span.glyphicon.glyphicon-pencil
+			//- 	button.btn.btn-primary.btn-sm(ng-click="delete(categorie)")
+			//- 		span.glyphicon.glyphicon-trash

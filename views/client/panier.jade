@@ -1,0 +1,50 @@
+.section_mod-d
+	.container
+		.row
+			.col-md-8
+				.table-container
+					table.table.table-cart-order
+						thead
+							tr
+								th
+								th PRODUIT
+								th prix
+								th QTE
+								th TOTAL
+						tbody
+							tr(ng-repeat="commande in $root.commandes")
+								td
+									span.no-br
+										i.icon-close.fa.fa-times.js-del(ng-click="delCommande(commande._id)")
+										img.table-cart-order__img.img-responsive(ng-src='{{ commande.produit.photo }}', height='109', width='109', alt='Foto')
+								td
+									span.table-cart-order__name {{ commande.produit.nom }}
+									span.table-cart-order__size(ng-repeat="ing in commande.ingredients.less") - {{ ing.nom }} &nbsp;
+									span.table-cart-order__size(ng-repeat="ing in commande.ingredients.more") + {{ ing.nom+" ("+ing.prix+" €)" }} &nbsp;
+									br
+									span.table-cart-order__size
+										b Taille:
+										|  {{ commande.taille ? commande.taille.nom : "Normal" }}
+								td
+									span.table-cart-order__price {{ commande.produit.prix }} €
+								td
+									div.row.quantite
+										span.fa-stack.fa-md(ng-click="delQuantite(commande._id)")
+											i.fa.fa-square-o.fa-stack-2x
+											i.fa.fa-minus.fa-stack-1x
+										span.table-cart-order__number {{ commande.quantite }}
+										span.fa-stack.fa-md(ng-click="addQuantite(commande._id)")
+											i.fa.fa-square-o.fa-stack-2x
+											i.fa.fa-plus.fa-stack-1x
+								td
+									span.table-cart-order__price {{ commande.total }} €
+			.col-md-4
+				.section-table-order.section-table-order_mod-a(bs-affix, data-offset-top="455")
+					h2.table-totals__title.ui-title-inner Montant Total
+					table.table-totals
+						tbody
+							tr
+								td.table-totals__total Total
+								td.table-totals__total {{ panier.total }} €
+					a.table-totals__btn.ui-btn.ui-btn_mod-a.btn-effect(href='javascript:void(0);', ng-click="go('/accueil')") modifier ma commande
+					a.table-totals__btn.ui-btn.ui-btn-primary.btn-effect(href='javascript:void(0);', ng-click="go('/livraison')") régler la commande

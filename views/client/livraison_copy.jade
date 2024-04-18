@@ -1,0 +1,62 @@
+div.content.paiementForm(ng-init="init()")
+	h1.title= title
+	br
+	form
+		div.row
+			div.col-md-4
+				div 
+					b Genre
+				label.radio-inline(for="genre")
+					input(type="radio", name="genre", value="monsieur", checked="checked")
+					div M.
+				label.radio-inline(for="genre")
+					input(type="radio", name="genre", value="madamme")
+					div Mme
+		div.row
+			div.col-md-5.form-group
+				label(for="nom") Nom *
+				input.form-control(type="text", name="nom", ng-model="client.nom", required)
+			div.col-md-5.form-group
+				label(for="prenom") prenom
+				input.form-control(type="text", name="prenom", ng-model="client.prenom")
+		div.row
+			div.col-md-5.form-group
+				label(for="phone") Téléphone
+				input.form-control(type="text", name="phone", ng-model="client.telephone")
+			div.col-md-5.form-group
+				label(for="email") Email *
+				input.form-control(type="email", name="email", ng-model="client.email", required)
+		if client.livraison.domicile == true
+			div.row
+				div.col-md-5.form-group
+					label(for="adresse") Adresse
+					input.form-control(type="text", name="adresse", ng-model="place", g-places-autocomplete, options="autocompleteOptions", force-selection="true", ng-change="loadPlace()")
+				div.col-md-5.form-group
+					label(for="ville") Ville
+					input.form-control(type="text", name="ville", ng-model="client.adresse.ville")
+				input(type="hidden", name="place", ng-model="client.place")
+		if client.paiement.enLigne == false
+			div.row
+				div.col-md-6
+					div
+						b Mode de paiement
+					label.radio-inline(for="cash")
+						input#cash(type="radio", name="paiement", ng-model="client.typePaiement", value="cash", checked="checked")
+						div Cash
+					label.radio-inline(for="ticketResto")
+						input#ticketResto(type="radio", name="paiement", ng-model="client.typePaiement", value="ticket-resto")
+						div Ticket restaurant
+					label.radio-inline(for="carteBleu")
+						input#carteBleu(type="radio", name="paiement", ng-model="client.typePaiement", value="carte-bleu")
+						div Carte bleu
+
+		div.row
+			div.col-md-1.col-md-offset-5
+				button.btn.btn-danger(ng-click="go('/panier')") Retour
+			div.col-md-1
+				button.btn.btn-success(type="submit", ng-click="valide()", ng-show="!loading") Continuer
+				i.fa.fa-spinner.fa-pulse.fa-3x.fa-fw(ng-show="loading")
+
+
+
+

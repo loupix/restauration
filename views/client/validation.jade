@@ -1,0 +1,6 @@
+div.content.validation(ng-init="init()", style="margin:0 2.5em;")
+	h1 Merci
+	h1 Votre commande sera prète d'ici #{dureeTotal} Min
+		if client.livraison.domicile
+			br
+			small (dont #{restaurant.livraison.duree} min de livraison)

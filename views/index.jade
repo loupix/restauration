@@ -1,0 +1,105 @@
+extends layout
+
+block content
+	#page-preloader
+		span.spinner
+	#wrapper.layout-theme.animated-css(data-header='sticky', data-header-top='200')
+	#sb-site
+		.wrap-content
+			header.header.clearfix
+				.header__wrap
+					a.logo(href='javascript:void(0);', ng-click="go('/accueil')")
+						img.img-responsive(src='images/250.png', alt='Logo')
+					span.header-basket.sb-toggle-right
+						i.icon.pe-7s-cart
+						span.header-basket__number.ng-hide(ng-show="commandes.length>0") {{ commandes.length }}
+			// end header
+			.section-title(style="background-image:url('#{restaurant.photo}')")
+				.container
+					.row
+						.col-xs-12
+							.section__inner
+								h1.ui-title-page= restaurant.enseigne
+								ol.breadcrumb(style="background:none;")
+									li.active(ng-click="gotoAnchor('commander')") Commander
+			.ng-hide(ng-show="loading")
+				#page-view
+						span.spinner
+				#wrapper.layout-theme.animated-css(data-header='sticky', data-header-top='500')
+			div(ng-hide="loading")
+				ng-view
+			
+	.sb-slidebar.sb-right(ng-init="loadPanier()")
+		section.section-list-cart
+			h2.ui-title-inner Mes commandes
+			ul.list-cart.list-unstyled
+				li.list-cart__item(ng-repeat="commande in commandes")
+					.list-cart__img
+						i.list-cart__icon.icon.fa.fa-times.js-del(ng-click="delCommande(commande)")
+						img.img-responsive(ng-src='{{ commande.produit.photo }}', height='87', width='87', alt='Foto')
+					.list-cart__inner
+						h3.list-cart__title {{ commande.produit.nom }}
+						.list-cart__size
+							span.list-cart__size_name Taille:
+							|  {{ commande.taille ? commande.taille.nom : "Normal" }}
+						.list-cart__size(ng-repeat="ing in commande.ingredients.less")
+							span.list-cart__size_name -
+							| {{ ing.nom }}
+						.list-cart__size(ng-repeat="ing in commande.ingredients.more")
+							span.list-cart__size_name +
+							| {{ ing.nom+" ("+ing.prix+" €)" }}
+						.list-cart__price
+							span.color_primary.ng-hide(ng-show="commande.quantite") {{ commande.quantite }} x
+							|  {{ commande.total }} €
+			.total-price.clearfix
+				| Prix Total
+				span.total-price__number {{ panier.total }} €
+			div.ng-hide(ng-show="restaurant.open")
+				a.total-price__btn.ui-btn.ui-btn_mod-a.btn-effect.btn-block(href="javascript:void(0);", ng-click="go('/panier')") voir le panier
+				a.total-price__btn.ui-btn.ui-btn-primary.btn-effect.btn-block(href='javascript:void(0);', ng-click="go('/livraison')") régler ma commande
+			div.ng-hide(ng-show="!restaurant.open")
+				h3 Pizzeria fermé
+		// end list-cart
+
+
+
+
+block footer
+	.container
+		.row
+			.col-xs-12
+				.footer-contacts
+					span.footer-contacts__number= restaurant.telephone
+					|{{ restaurant.adresse.adresse }} - {{ restaurant.adresse.codePostal }} {{ restaurant.adresse.ville }}
+				.footer-decor.decor-2.ng-hide(ng-show="restaurant.horraires.length > 0") &
+				ul.footer-list.list-inline
+					li.footer-list__item(ng-repeat="horraire in restaurant.horraires") 
+						span.footer-list__link(href='javascript:void(0);') {{ horraire.jour | date:"EEE" }}
+							|{{ horraire.matin.ouverture | date:"HH:mm" }} - {{ horraire.matin.fermeture | date:"HH:mm" }}
+							|{{ horraire.apresMidi.ouverture | date:"HH:mm" }} - {{ horraire.apresMidi.fermeture | date:"HH:mm" }}
+
+				//- .footer-decor.decor-2.ng-hide(ng-show="restaurant.fermetures.length > 0") &
+				//- ul.footer-list.list-inline
+				//- 	li.footer-list__item(ng-repeat="horraire in restaurant.fermetures") 
+				//- 		span.footer-list__link(href='javascript:void(0);') {{ horraire.jour | date:"EEE MM MMM" }}
+
+				.footer-decor.decor-2 &
+				ul.footer-list.list-inline
+					li.footer-list__item
+						a.footer-list__link(href='http://www.facebook.com/easypizaa', target="_blank") Facebook
+					li.footer-list__item
+						a.footer-list__link(href='javascript:void(0);') Twitter
+					li.footer-list__item
+						a.footer-list__link(href='javascript:void(0);') Instagram
+					li.footer-list__item
+						a.footer-list__link(href='javascript:void(0);') Pinterest
+					li.footer-list__item
+						a.footer-list__link(href='javascript:void(0);') Flickr
+	.copyright.border-top
+		.container
+			.row
+				.col-xs-12
+					.text-center
+						| Copyright © 2017 
+						a.copyright__link(href="http://www.blue-screen.co", target="_blank") Blue-Screen.co
+						|  All rights reserved.
